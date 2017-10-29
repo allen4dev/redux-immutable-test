@@ -48,7 +48,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    todos: state.todos,
+    todos: state.get('todos').toArray(),
   };
 }
 
