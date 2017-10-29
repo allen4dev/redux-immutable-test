@@ -28,6 +28,12 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 export const fetchTodos = () =>
   delay(500).then(() => {
     return fakeDatabase.todos;
+    // return fakeDatabase.todos.reduce((obj, todo) => {
+    //   return {
+    //     ...obj,
+    //     [todo.id]: todo,
+    //   }
+    // }, {});
     //   switch (filter) {
     //     case 'all':
     //       return fakeDatabase.todos;

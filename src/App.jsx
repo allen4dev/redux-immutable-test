@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { List } from 'immutable';
+
 import Form from './shared/Form';
 import TodoList from './shared/TodoList';
 
@@ -12,7 +14,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    if (this.props.todos.length === 0) {
+    if (this.props.todos.size === 0) {
       await this.props.getTodos();
     }
   }
@@ -47,8 +49,12 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+  // normally I get an Array (List) of ids from the store
+  const ids = List(Object.keys(state.get('todos').toObject()));
+
   return {
-    todos: state.get('todos').toArray(),
+    // todos: state.get('todos').toArray(),
+    todos: ids.map(id => state.get('todos').get(id)),
   };
 }
 
