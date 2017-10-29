@@ -1,13 +1,14 @@
 import React from 'react';
 
-const Form = () => {
+const Form = ({ value, handleChange, handleSubmit }) => {
   return (
-    <form className="Form" onSubmit={e => e.preventDefault()}>
+    <form className="Form" onSubmit={handleSubmit}>
       <input
         type="text"
         className="Form-input"
         placeholder="Insert Todo"
-        onChange={e => console.log('yara')}
+        value={value}
+        onChange={handleChange}
       />
     </form>
   );

@@ -7,6 +7,13 @@ export function setTodos(todos) {
   };
 }
 
+export function setTodo(todo) {
+  return {
+    type: 'SET_TODO',
+    payload: todo,
+  };
+}
+
 export function getTodos() {
   return async dispatch => {
     const todos = await api.fetchTodos();
@@ -14,5 +21,15 @@ export function getTodos() {
     dispatch(setTodos(todos));
 
     return todos;
+  };
+}
+
+export function postTodo(text) {
+  return async dispatch => {
+    const todo = await api.addTodo(text);
+
+    dispatch(setTodo(todo));
+
+    return todo;
   };
 }
