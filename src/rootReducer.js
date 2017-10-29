@@ -20,6 +20,12 @@ const todosReducer = (state = INITIAL_STATE.get('todos'), action = {}) => {
       // return state.push(action.payload);
       return state.set(action.payload.id, Map(action.payload));
 
+    case 'TOGGLE_TODO':
+      return state.updateIn(
+        [action.payload.toString(), 'completed'],
+        value => !value
+      );
+
     default:
       return state;
   }

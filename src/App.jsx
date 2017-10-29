@@ -33,6 +33,12 @@ class App extends Component {
     this.setState({ text: '' });
   };
 
+  handleToggle = async id => {
+    // console.log(id);
+
+    await this.props.updateTodo(id);
+  };
+
   render() {
     return (
       <div className="App">
@@ -42,7 +48,7 @@ class App extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <TodoList items={this.props.todos} />
+        <TodoList items={this.props.todos} handleToggle={this.handleToggle} />
       </div>
     );
   }
@@ -61,4 +67,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   getTodos: actions.getTodos,
   postTodo: actions.postTodo,
+  updateTodo: actions.updateTodo,
 })(App);
